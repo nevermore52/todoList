@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to our site!</h1>
+        <nav>
+            <a href="/login">Login</a> | 
+            <a href="/register">Register</a>
+        </nav>
+    </div>
+    <div class="container">
+        <h1>Welcome, {{.Username}}!</h1>
+        <nav>
+            <a href="/logout">Logout</a>
+        </nav>
+    </div>
+</body>
+</html>
