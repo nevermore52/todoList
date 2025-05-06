@@ -6,17 +6,19 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to our site!</h1>
-        <nav>
-            <a href="/login">Login</a> | 
-            <a href="/register">Register</a>
-        </nav>
-    </div>
-    <div class="container">
         <h1>Welcome, {{.Username}}!</h1>
         <nav>
             <a href="/logout">Logout</a>
         </nav>
+    </div>
+    <title>Todo List</title>
+    <div class="container">
+        <h1>Мой Todo List</h1>
+        <div class="input-section">
+            <button id="add-btn">Добавить</button>
+            <input type="text" id="todo-input" placeholder="...">
+        </div>
+        <ul class="todo-list" id="todo-list"></ul>
     </div>
 </body>
 </html>

@@ -8,7 +8,7 @@ import (
 func authMiddleware(db *sql.DB) func(http.Handler) http.Handler {
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			// получаем токен из кукии
+			// получаем токен из куки
 			cookie, err := r.Cookie("jwt")
 			if err != nil {
 				http.Redirect(w, r, "/login", http.StatusSeeOther)
