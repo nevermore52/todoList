@@ -44,8 +44,20 @@ func createTables(db *sql.DB) {
 		jwtkey VARCHAR(255),
 		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 	);`
+	todosTable := `
+	CREATE TABLE IF NOT EXISTS todos (
+		id SERIAL PRIMARY KEY,
+		user_id INT REFERENCES users(id),
+		text TEXT NOT NULL,
+		completed BOOLEAN DEFAULT false,
+		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+	);`
 
 	_, err := db.Exec(usersTable)
+	if err != nil {
+		log.Fatal("Error creating users table:", err)
+	}
+	_, err = db.Exec(todosTable)
 	if err != nil {
 		log.Fatal("Error creating users table:", err)
 	}

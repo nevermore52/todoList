@@ -1,24 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Home</title>
+    <title>Todo List</title>
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
     <div class="container">
         <h1>Welcome, {{.Username}}!</h1>
-        <nav>
-            <a href="/logout">Logout</a>
-        </nav>
-    </div>
-    <title>Todo List</title>
-    <div class="container">
-        <h1>Мой Todo List</h1>
-        <div class="input-section">
-            <button id="add-btn">Добавить</button>
-            <input type="text" id="todo-input" placeholder="...">
-        </div>
-        <ul class="todo-list" id="todo-list"></ul>
+        <nav><a href="/logout">Logout</a></nav>
+        
+        <form action="/add" method="POST" class="add">
+            <input type="text" name="text" placeholder="Новая задача..." required maxlength="25">
+            <button type="submit">Добавить</button>
+        </form>
+
+        <ul class="todo-list">
+            {{range .Todos}}
+            <li class="todo-item{{if .Completed}}.completed{{end}}">
+                <li class="todo-border">
+                <span class="todo-text">{{.Text}}</span>
+                <li class="buttons">
+                <form action="/toggle" method="POST">
+                    <input type="hidden" name="id" value="{{.ID}}">
+                    <button type="submit" class="toggle-btn">{{if .Completed}}Вернуть{{else}}Выполнено{{end}}</button>
+                </form>
+                <form action="/delete" method="POST">
+                    <input type="hidden" name="id" value="{{.ID}}">
+                    <button type="submit" class="delete-btn">Удалить</button>
+                </form>
+                </li>
+              </li>
+            </li>
+            {{end}}
+        </ul>
     </div>
 </body>
 </html>
